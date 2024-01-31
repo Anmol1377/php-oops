@@ -203,3 +203,128 @@ echo $obj->accessPrivate(); // Output: Private Property
 // public: Offers the least restriction. Members are accessible from anywhere.
 // protected: Offers medium restriction. Members are accessible within the class and its subclasses.
 // private: Offers the highest restriction. Members are accessible only within the class itself.
+
+
+
+// Inheritance in OOP = When a class derives from another class.
+// An inherited class is defined by using the extends keyword.
+
+class fruit_s {
+  public $name;
+  public $color;
+  public function __construct($name, $color) {
+    $this->name = $name;
+    $this->color = $color; 
+  }
+  public function intro() {
+    echo "The fruit is {$this->name} and the color is {$this->color}."; 
+  }
+}
+
+// Strawberry is inherited from Fruit
+class Strawberry extends fruit_s {
+  public function message() {
+    echo "Am I a fruit or a berry? "; 
+  }
+}
+
+$strawberry = new Strawberry("Strawberry", "red");
+echo '<br>';
+echo $strawberry->message();
+echo '<br>';
+echo $strawberry->intro();
+echo '<br>';
+
+// real exmaple with chat gpt 
+
+// Parent class
+class Vehicle {
+  protected $brand;
+  protected $model;
+
+  public function __construct($brand, $model) {
+      $this->brand = $brand;
+      $this->model = $model;
+  }
+
+  public function getInfo() {
+      return "Brand: {$this->brand}, Model: {$this->model}";
+  }
+}
+
+// Child class Car inheriting from Vehicle
+class Car extends Vehicle {
+  private $numDoors;
+
+  public function __construct($brand, $model, $numDoors) {
+      parent::__construct($brand, $model);
+      $this->numDoors = $numDoors;
+  }
+
+  public function getCarInfo() {
+      return $this->getInfo() . ", Number of Doors: {$this->numDoors}";
+  }
+}
+
+// Child class Motorcycle inheriting from Vehicle
+class Motorcycle extends Vehicle {
+  private $engineType;
+
+  public function __construct($brand, $model, $engineType) {
+      parent::__construct($brand, $model);
+      $this->engineType = $engineType;
+  }
+
+  public function getMotorcycleInfo() {
+      return $this->getInfo() . ", Engine Type: {$this->engineType}";
+  }
+}
+
+// Create instances of the classes
+$car = new Car('Toyota', 'Corolla', 4);
+$motorcycle = new Motorcycle('Honda', 'CBR600RR', 'Inline Four');
+echo '<br>';
+// Access methods from both parent and child classes
+echo $car->getCarInfo(); // Output: Brand: Toyota, Model: Corolla, Number of Doors: 4
+echo "<br>";
+echo $motorcycle->getMotorcycleInfo(); // Output: Brand: Honda, Model: CBR600RR, Engine Type: Inline Four
+echo '<br>';
+
+// protected way of function 
+class Fruit_new {
+  public $name;
+  public $color;
+  public function __construct($name, $color) {
+    $this->name = $name;
+    $this->color = $color; 
+  }
+  protected function intro() {
+    echo "The fruit is {$this->name} and the color is {$this->color}."; 
+  }
+}
+
+class Strawberry_2 extends Fruit_new {
+  public function message() {
+    echo "Am I a fruit or a berry? "; 
+    // way of calling protected function
+     $this->intro();
+  }
+}
+
+// Try to call all three methods from outside class
+$strawberry = new Strawberry_2("Strawberry", "red");  // OK. __construct() is public
+echo '<br>';
+$strawberry->message(); // OK. message() is public
+echo '<br>';
+
+// no need of calling intro as its been called and used in message function 
+// $strawberry->intro(); // intro() is protected
+echo '<br>';
+
+
+
+
+
+
+
+?>
