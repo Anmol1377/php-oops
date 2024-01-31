@@ -109,7 +109,9 @@ class myfruit
 echo '<br>';
 $pear = new myfruit("pear", "green");
 echo '<br>';
+
 //here why my array is called first 
+// destructor follows bottom to top approch
 print_r($pear);
 
 
@@ -133,9 +135,11 @@ class Example
     return 'Public Method';
   }
 }
-
+echo '<br>';
 $obj = new Example();
+echo '<br>';
 echo $obj->publicProperty; // Output: Public Property
+echo '<br>';
 echo $obj->publicMethod(); // Output: Public Method
 
 
@@ -164,11 +168,11 @@ class SubExample2 extends Example2
     return $property . ' - ' . $methodResult; // Return both property and method result
   }
 }
-
+echo '<br>';
 $subObj = new SubExample2();
+echo '<br>';
 echo $subObj->accessProtectedproperty(); // Output: Protected Property - Protected Method
-
-
+echo '<br>';
 
 // 3. private:
 // Private members are only accessible within the class itself. They cannot be accessed from outside the class, including from instances of the class or by subclasses.
@@ -188,11 +192,11 @@ class Example3
     return $this->privateProperty; // Accessible within the class
   }
 }
-
+echo '<br>';
 $obj = new Example3();
 // echo $obj->privateProperty; // Error: Cannot access private property
 // echo $obj->privateMethod(); // Error: Cannot access private method
-
+echo '<br>';
 echo $obj->accessPrivate(); // Output: Private Property
 
 // Comparison:
