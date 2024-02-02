@@ -420,6 +420,141 @@ echo "<br>";
 echo $class->prefixName("Jane Doe");
 
 
+// Using interfaces, we can write some code which can work for all of the animals even if each animal behaves differently:
+  // Interface definition
+interface Animal {
+  public function makeSound();
+}
 
+// Class definitions
+class Cat implements Animal {
+  public function makeSound() {
+    echo " Meow ";
+  }
+}
+
+class Dog implements Animal {
+  public function makeSound() {
+    echo " Bark ";
+  }
+}
+
+class Mouse implements Animal {
+  public function makeSound() {
+    echo " Squeak ";
+  }
+}
+
+// Create a list of animals
+$cat = new Cat();
+$dog = new Dog();
+$mouse = new Mouse();
+$animals = array($cat, $dog, $mouse);
+
+// Tell the animals to make a sound
+foreach($animals as $animal) {
+  $animal->makeSound();
+}
+
+
+
+// What are Traits?
+// PHP only supports single inheritance: a child class can inherit only from one single parent.
+
+// So, what if a class needs to inherit multiple behaviors? OOP traits solve this problem.
+
+// Traits are used to declare methods that can be used in multiple classes. Traits can have methods and abstract methods that can be used in multiple classes, and the methods can have any access modifier (public, private, or protected).
+
+// Traits are declared with the trait keyword:
+
+// To use a trait in a class, use the use keyword:
+
+trait message1 {
+  public function msg1() {
+    echo "OOP is fun! ";
+  }
+}
+
+trait message2 {
+  public function msg2() {
+    echo "OOP reduces code duplication!";
+  }
+}
+
+class Welcome {
+  use message1;
+}
+
+class Welcome2 {
+  use message1, message2;
+}
+
+$obj = new Welcome();
+$obj->msg1();
+echo "<br>";
+
+$obj2 = new Welcome2();
+$obj2->msg1();
+$obj2->msg2();
+
+
+// static method 
+// https://www.w3schools.com/php/php_oop_static_methods.asp
+class greeting {
+  public static function welcome() {
+    echo "Hello World!";
+  }
+}
+
+// Call static method
+greeting::welcome();
+
+
+// more ex 
+class greeting {
+  public static function welcome() {
+    echo "Hello World!";
+  }
+
+  public function __construct() {
+    self::welcome();
+  }
+}
+
+new greeting();
+
+// more ex 
+class A {
+  public static function welcome() {
+    echo "Hello World!";
+  }
+}
+
+class B {
+  public function message() {
+    A::welcome();
+  }
+}
+
+$obj = new B();
+echo $obj -> message();
+
+
+// new ex 
+class domain {
+  protected static function getWebsiteName() {
+    return "W3Schools.com";
+  }
+}
+
+class domainW3 extends domain {
+  public $websiteName;
+  public function __construct() {
+    $this->websiteName = parent::getWebsiteName();
+  }
+}
+
+$domainW3 = new domainW3;
+echo $domainW3 -> websiteName;
 
 ?>
